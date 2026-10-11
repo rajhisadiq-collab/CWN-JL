@@ -218,6 +218,23 @@ html,body{max-width:100%;overflow-x:hidden}
 .cu .add{height:28px;border-radius:8px;border:1px solid rgba(214,178,110,.4);background:none;color:var(--gold2);font-size:12px;padding:0 8px}
 .note{font-size:12px;color:var(--muted);line-height:1.7}
 
+
+/* lease call sign */
+.mode button{font-size:13px}
+.cs-box{padding:12px;border-radius:16px;margin-bottom:10px;background:linear-gradient(150deg,rgba(214,178,110,.16),rgba(0,0,0,.28));border:1px solid rgba(214,178,110,.4);animation:pop .4s ease}
+.cs-lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;font-weight:700;margin-bottom:8px}
+.cs-lbl small{font-family:'JetBrains Mono',monospace;font-weight:400;color:var(--muted);font-size:11px}
+.cs-in{display:flex;align-items:center;gap:10px;direction:ltr}
+.cs-in input{width:120px;height:50px;border-radius:13px;border:1px solid rgba(214,178,110,.5);background:rgba(0,0,0,.35);color:var(--gold2);
+  font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;letter-spacing:3px;text-align:center;text-transform:uppercase;outline:none}
+.cs-in input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(214,178,110,.15)}
+.cs-in input::placeholder{font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;letter-spacing:0;font-weight:400;color:#6c7690}
+.cs-in span{flex:1;font-size:12.5px;color:var(--muted);text-align:left;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;direction:ltr}
+.cs-chip{height:32px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;transition:.2s}
+.cs-chip.on{background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1a1205;border-color:transparent;font-weight:700}
+.cs-chip small{font-family:'IBM Plex Sans Arabic',sans-serif;font-size:10.5px;opacity:.75;margin-left:4px}
+.pfx{min-width:34px;text-align:center}
 /* charter */
 .mode{margin-bottom:14px}
 #chtBox.in{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
@@ -538,9 +555,53 @@ body[data-view="jl"] .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
 .ho-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#d6b26e,#4fd1c5)}
 .handoff.on .ho-bar i{animation:hoBar 2.1s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes hoBar{to{width:100%}}
+/* ===================== LOCK SCREEN ===================== */
+body[data-lock="1"] #home,body[data-lock="1"] .view,body[data-lock="1"] .to-rl,body[data-lock="1"] .rl-bg{display:none!important}
+.lock{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(900px 600px at 50% -10%,rgba(214,178,110,.16),transparent 60%),radial-gradient(700px 500px at 50% 120%,rgba(79,209,197,.10),transparent 60%),#050913}
+body[data-lock="1"] .lock{display:flex}
+.lock .half{position:absolute;left:0;right:0;height:50%;background:inherit;transition:transform .7s cubic-bezier(.7,0,.2,1);z-index:0}
+.lk-in{position:relative;z-index:2;width:100%;max-width:340px;padding:24px 20px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center}
+.lk-logo{position:relative;width:104px;height:104px;border-radius:50%;display:grid;place-items:center;margin-bottom:16px;animation:hbrand .9s cubic-bezier(.2,.8,.2,1) both}
+.lk-logo img{width:76px;filter:brightness(1.4) drop-shadow(0 0 12px rgba(214,178,110,.55));transition:transform .6s cubic-bezier(.2,1.4,.4,1)}
+.lk-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(214,178,110,.45)}
+.lk-ring.r2{inset:-12px;border-color:rgba(214,178,110,.18);animation:halo 2.6s ease-out infinite}
+.lk-arc{position:absolute;inset:-4px;width:112px;height:112px;animation:spin 6s linear infinite}
+.lk-arc circle{fill:none;stroke:url(#lkG);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:90 260}
+.lk-in h1{font-family:'Tinos',serif;font-size:24px;letter-spacing:6px;color:var(--gold2);animation:hbrand .9s .1s both}
+.lk-in p{color:var(--muted);font-size:13px;margin:6px 0 22px;min-height:20px;transition:color .3s;text-align:center}
+.lk-in p.err{color:#ff8f8f}
+.dots{display:flex;gap:16px;margin-bottom:28px;direction:ltr}
+.dots i{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(214,178,110,.6);transition:background .2s,transform .2s,border-color .3s}
+.dots i.on{background:var(--gold);border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 12px rgba(214,178,110,.7)}
+.dots.bad{animation:shake .5s cubic-bezier(.36,.07,.19,.97)}
+.dots.bad i{border-color:#ff7b7b;background:#ff7b7b;box-shadow:0 0 12px rgba(255,100,100,.6)}
+.dots.good i{background:#5fe0b0;border-color:#5fe0b0;box-shadow:0 0 14px rgba(95,224,176,.8)}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
+.pad{display:grid;grid-template-columns:repeat(3,76px);gap:16px 26px;direction:ltr}
+.key{width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--text);
+  font-family:'JetBrains Mono',monospace;font-size:28px;display:grid;place-items:center;transition:background .15s,transform .1s;-webkit-tap-highlight-color:transparent;
+  animation:keyin .5s cubic-bezier(.2,1.2,.4,1) both;animation-delay:calc(.2s + var(--i)*.035s)}
+@keyframes keyin{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.key:active{background:rgba(214,178,110,.28);transform:scale(.93)}
+.key.ghost{background:none;border-color:transparent}
+.key svg{width:30px;height:30px;stroke:var(--gold2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.key[hidden]{visibility:hidden;display:grid}
+.lk-face{margin-top:22px;height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(79,209,197,.5);background:rgba(79,209,197,.1);color:#b5f3ea;
+  font-family:inherit;font-size:14px;display:none;align-items:center;gap:8px}
+.lk-face.on{display:flex;animation:pop .4s ease}
+.lk-face svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+/* unlock animation */
+.lock.open .lk-logo img{transform:scale(1.25)}
+.lock.open .lk-in{animation:lkout .55s .15s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes lkout{to{opacity:0;transform:scale(1.08);filter:blur(6px)}}
+.lock.open{animation:lkfade .5s .55s ease forwards}
+@keyframes lkfade{to{opacity:0;visibility:hidden}}
+.lockbtn{border:0;background:none;color:var(--muted);font-family:inherit;font-size:12.5px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.lockbtn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
 
 @media print{
-  .to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
+  .lock,.to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
   body[data-view="rl"] #viewJL{display:none!important}
   body[data-view="rl"] #rscaler{transform:scale(.92)!important}
   body[data-view="rl"] .rsheet{box-shadow:none!important}
@@ -559,7 +620,19 @@ body[data-view="jl"] .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
 </style>
 <style id="pageSz">@page{size:A4 landscape;margin:6mm}</style>
 </head>
-<body data-view="home">
+<body data-view="home" data-lock="1">
+<div class="lock" id="lock">
+  <div class="lk-in">
+    <div class="lk-logo"><span class="lk-ring"></span><span class="lk-ring r2"></span>
+      <svg class="lk-arc" viewBox="0 0 112 112"><defs><linearGradient id="lkG"><stop offset="0" stop-color="#d6b26e"/><stop offset="1" stop-color="#4fd1c5"/></linearGradient></defs><circle cx="56" cy="56" r="54"/></svg>
+      <img id="lkLogo" alt="CROWN"></div>
+    <h1>CROWN OPS</h1>
+    <p id="lkMsg">أدخل الرمز السري</p>
+    <div class="dots" id="lkDots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="pad" id="lkPad"></div>
+    <button class="lk-face" id="lkFace" type="button"><svg viewBox="0 0 24 24"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.3 4.4 1.3 6 0"/></svg><span>الدخول بـ Face ID</span></button>
+  </div>
+</div>
 <div class="sky" id="sky"><div class="orb a"></div><div class="orb b"></div></div>
 
 <div class="view" id="viewJL">
@@ -601,9 +674,14 @@ body[data-view="jl"] .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
       </section>
       <section class="card">
         <h2><span class="num">2</span>اختر الرحلة</h2>
-        <div class="seg mode"><button data-m="sch" class="on">رحلات الجدول</button><button data-m="cht">✈ شارتر</button></div>
+        <div class="seg mode"><button data-m="sch" class="on">الجدول</button><button data-m="cht">شارتر</button><button data-m="lse">✈ مؤجرة</button></div>
         <div id="schBox"><div class="flights" id="flights"></div></div>
         <div id="chtBox" hidden>
+          <div id="csBox" class="cs-box" hidden>
+            <label class="cs-lbl">كول ساين الشركة المستأجرة<small>CALL SIGN</small></label>
+            <div class="cs-in"><input id="csIn" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="مثل LYW"><span id="csName"></span></div>
+            <div class="cs-chips" id="csChips"></div>
+          </div>
           <div id="chtRows"></div>
           <div class="cht-actions"><button class="btn" id="chtAdd">+ قطاع</button><button class="btn primary" id="chtFill">تعبئة الفورم</button></div>
           <p class="hint">الأوقات Zulu. إذا عدّت الرحلة منتصف الليل يتغير التاريخ آليًا (مثل 22-23/07). أقصى شي 5 قطاعات.</p>
@@ -677,7 +755,7 @@ body[data-view="jl"] .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
         <h2>RELEASE</h2><p>Flight Dispatch Release</p>
         <div class="hc-go"><span>فتح</span><b>←</b></div></div></a>
     </div>
-    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span></div>
+    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
   </div>
 </div>
 
@@ -758,6 +836,13 @@ body[data-view="jl"] .toast{bottom:calc(92px + env(safe-area-inset-bottom))}
     <div class="dbtns"><button class="btn primary" id="fSaveAdd">حفظ وإضافة للرحلة</button><button class="btn" id="fSave">حفظ في القائمة</button></div>
   </div>
   <div class="dsec"><h4>المضافون يدويًا</h4><div id="customList"></div></div>
+  <div class="dsec"><h4>كول ساين الشركات (الرحلات المؤجرة)</h4>
+    <div class="row2"><label class="fld">CALL SIGN<input id="sCs" maxlength="4" autocomplete="off" placeholder="LYW"></label><label class="fld">اسم الشركة<input id="sCsName" autocomplete="off" placeholder="LIBYAN WINGS" style="text-align:left"></label></div>
+    <div class="dbtns" style="margin-bottom:10px"><button class="btn primary" id="sCsAdd">+ إضافة</button></div>
+    <div id="csList"></div>
+    <p class="note">أي كول ساين تكتبه لأول مرة في رحلة مؤجرة ينحفظ هنا تلقائيًا.</p>
+  </div>
+  <div class="dsec"><h4>الأمان</h4><div id="sFace"></div><div class="dbtns" style="margin-top:8px"><button class="btn" data-lockbtn>🔒 قفل المنظومة الآن</button></div></div>
   <div class="dsec"><h4>الفورم</h4>
     <div class="row2"><label class="fld">صفوف فارغة (بدون ضيافة)<input id="sRows" type="number" min="1" max="20" inputmode="numeric"></label><label class="fld">Previous Rest<input id="sRest" autocomplete="off"></label></div>
     <p class="note">لما تضيف ضيافة، صفوف الطاقم تصير بعددهم بالضبط. بدون ضيافة، يكمّل الفورم بصفوف فارغة لهذا العدد. الإعدادات والأسماء اليدوية تنحفظ على هذا الجهاز.</p>
@@ -884,7 +969,7 @@ function onDate(){
   ink($('hdate'),formDate(),0);
   clearSectors();
   renderFlights();
-  if(state.mode==='cht'){chtCompute(false);}else{renderCrewRows();setButtons(false);$('empty').style.display='grid';}
+  if(isMan()){chtCompute(false);}else{renderCrewRows();setButtons(false);$('empty').style.display='grid';}
 }
 function clearSectors(){for(let n=1;n<=5;n++)['dt','fl','fr','to','na','sd','sa','bt'].forEach(k=>{const e=$(k+n);e.innerHTML='';e.classList.remove('glow');e.style.fontSize='';});}
 
@@ -925,11 +1010,18 @@ function choose(pair){
 function shine(){const sh=$('sheet');sh.classList.remove('shine');void sh.offsetWidth;sh.classList.add('shine');}
 function setButtons(on){$('pwrap').classList.toggle('tap',on);if(window.updateToRL)updateToRL();['btnPdf','btnShare','btnPrint','btnZoom'].forEach(id=>$(id).disabled=!on);}
 const fname=()=>{const s=state.sectors,a=s[0],b=s[s.length-1];
-  return `JL_${state.mode==='cht'?'CHT_':''}${a.fl}${s.length>1?'-'+b.fl.replace(/^CWN/,''):''}_${pad(state.d)}-${pad(state.m)}-${state.y}.pdf`;};
+  return `JL_${state.mode==='cht'?'CHT_':state.mode==='lse'?'LSE_':''}${a.fl}${s.length>1?'-'+splitFl(b.fl)[1]:''}_${pad(state.d)}-${pad(state.m)}-${state.y}.pdf`;};
 
 /* ================= CHARTER (manual flight) ================= */
 const NATURES=['NON SKD','SKD','FERRY','TRNG','TEST'];
-let cht=[{fl:'',fr:'',to:'',sd:'',sa:'',na:'NON SKD'},{fl:'',fr:'',to:'',sd:'',sa:'',na:'NON SKD',auto:true}];
+const newRows=na=>[{fl:'',fr:'',to:'',sd:'',sa:'',na},{fl:'',fr:'',to:'',sd:'',sa:'',na,auto:true}];
+const ROWS={cht:newRows('NON SKD'),lse:newRows('')};
+let cht=ROWS.cht;
+let callsigns=[];
+let leaseCS='';
+const isMan=()=>state.mode==='cht'||state.mode==='lse';
+const pfx=()=>state.mode==='lse'?leaseCS:'CWN';
+const splitFl=f=>{const m=/^([A-Z]*?)(\d.*)$/.exec(f||'');return m?[m[1],m[2]]:[f||'',''];};
 const tmin=v=>{const m=/^(\d{1,2}):(\d{2})$/.exec(v||'');if(!m)return null;const h=+m[1],mi=+m[2];return(h<24&&mi<60)?h*60+mi:null;};
 const hhmm=n=>`${pad(Math.floor(n/60))}:${pad(n%60)}`;
 function chtCalc(){
@@ -951,13 +1043,13 @@ function chtRender(focus){
     <div class="ch-h"><span class="sn">${i+1}</span><span class="cdate">${c?`${pad(c.dt.getUTCDate())}/${pad(c.dt.getUTCMonth()+1)}${!sameDay(c.dt,c.at)?' <em>+1 ↗</em>':''}`:'—'}</span>
       ${cht.length>1?`<button class="x" data-del="${i}" aria-label="حذف">✕</button>`:''}</div>
     <div class="ch-g">
-      <label class="w2">FLT Nº<div class="pre"><span>CWN</span><input data-k="fl" value="${esc(r.fl)}" inputmode="numeric" maxlength="5" placeholder="766"></div></label>
+      <label class="w2">FLT Nº<div class="pre"><span class="pfx">${esc(pfx()||'···')}</span><input data-k="fl" value="${esc(r.fl)}" inputmode="numeric" maxlength="5" placeholder="766"></div></label>
       <label>FROM<input data-k="fr" value="${esc(r.fr)}" maxlength="4" placeholder="MJI"></label>
       <label>TO<input data-k="to" value="${esc(r.to)}" maxlength="4" placeholder="ALY"></label>
       <label>STD<input data-k="sd" value="${esc(r.sd)}" inputmode="numeric" maxlength="5" placeholder="20:45"></label>
       <label>STA<input data-k="sa" value="${esc(r.sa)}" inputmode="numeric" maxlength="5" placeholder="23:15"></label>
       <label>BLOCK<output class="${c?'ok':''}">${c?c.bt:'--:--'}</output></label>
-      <label class="w2">NATURE<select data-k="na">${NATURES.map(n=>`<option${n===r.na?' selected':''}>${n}</option>`).join('')}</select></label>
+      <label class="w2">NATURE${state.mode==='lse'?`<input data-k="na" value="${esc(r.na)}" maxlength="12" placeholder="اكتبها يدوي">`:`<select data-k="na">${NATURES.map(n=>`<option${n===r.na?' selected':''}>${n}</option>`).join('')}</select>`}</label>
     </div></div>`;}).join('');
   $('chtAdd').disabled=cht.length>=5;
   box.querySelectorAll('input,select').forEach(el=>{
@@ -967,6 +1059,7 @@ function chtRender(focus){
       if(k==='fl')v=v.replace(/[^0-9A-Z]/g,'');
       if(k==='sd'||k==='sa'){let d=v.replace(/\D/g,'').slice(0,4);v=d.length>2?d.slice(0,2)+':'+d.slice(2):d;}
       if(k==='fr'||k==='to')v=v.replace(/[^A-Z]/g,'');
+      if(k==='na')v=v.replace(/\s+/g,' ');
       el.value=v;cht[i][k]=v;
       if(i===0&&cht[1]&&cht[1].auto&&(k==='fr'||k==='to')){cht[1].fr=cht[0].to;cht[1].to=cht[0].fr;}
       if(i===1&&(k==='fr'||k==='to'))cht[1].auto=false;
@@ -991,23 +1084,24 @@ function chtCompute(anim){
   const calc=chtCalc(),list=[];
   cht.forEach((r,i)=>{const c=calc[i];
     if(!r.fl&&!r.fr&&!r.to&&!r.sd&&!r.sa)return;
-    list.push({dt:c?c.dt:DT(0),fl:r.fl?'CWN'+r.fl:'',fr:r.fr,to:r.to,na:r.na,sd:r.sd,sa:r.sa,bt:c?c.bt:'',_c:c});
+    list.push({dt:c?c.dt:DT(0),fl:r.fl?pfx()+r.fl:'',fr:r.fr,to:r.to,na:r.na,sd:r.sd,sa:r.sa,bt:c?c.bt:'',_c:c});
   });
   state.sectors=list;state.file=null;
   const ok=list.filter(s=>s._c);
   state.start=ok.length?ok[0].dt:DT(0);
   state.end=ok.length?ok[ok.length-1]._c.at:DT(0);
   writeSectors(list,anim);
-  const ready=list.length>0&&list.every(s=>s.fl&&s.fr&&s.to&&s._c);
+  const ready=list.length>0&&list.every(s=>s.fl&&s.fr&&s.to&&s._c)&&(state.mode!=='lse'||leaseCS.length>=2);
   setButtons(ready);$('empty').style.display=list.length?'none':'grid';
   return ready;
 }
 function setMode(m){
   state.mode=m;
   document.querySelectorAll('.mode button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-  $('schBox').hidden=m!=='sch';$('chtBox').hidden=m!=='cht';
-  $('chtBox').classList.toggle('in',m==='cht');
-  if(m==='cht'){chtRender();chtCompute(false);}
+  const man=m==='cht'||m==='lse';
+  $('schBox').hidden=man;$('chtBox').hidden=!man;$('csBox').hidden=m!=='lse';
+  $('chtBox').classList.remove('in');void $('chtBox').offsetWidth;$('chtBox').classList.toggle('in',man);
+  if(man){cht=ROWS[m];renderCS();chtRender();chtCompute(false);}
   else{state.sectors=[];state.start=state.end=null;clearSectors();$('hdate').innerHTML=state.d?formDate():'';renderCrewRows();
     document.querySelectorAll('.fcard').forEach(c=>c.classList.remove('sel'));setButtons(false);$('empty').style.display='grid';}
 }
@@ -1015,7 +1109,8 @@ function initCharter(){
   state.mode='sch';
   document.querySelectorAll('.mode button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
   $('chtAdd').onclick=()=>{if(cht.length>=5)return;const p=cht[cht.length-1];cht.push({fl:'',fr:p.to||'',to:'',sd:'',sa:'',na:p.na});chtRender(cht.length-1);chtCompute(false);};
-  $('chtFill').onclick=()=>{if(chtCompute(true)){shine();toast('تم تعبئة رحلة الشارتر ✓');if(innerWidth<980)setTimeout(()=>$('pwrap').scrollIntoView({behavior:'smooth',block:'center'}),250);}
+  $('chtFill').onclick=()=>{if(state.mode==='lse'&&leaseCS.length<2){toast('اكتب كول ساين الشركة أولًا');$('csIn').focus();return;}
+    if(chtCompute(true)){if(state.mode==='lse')saveCS(leaseCS);shine();toast(state.mode==='lse'?`تم تعبئة الرحلة المؤجرة ${leaseCS} ✓`:'تم تعبئة رحلة الشارتر ✓');if(innerWidth<980)setTimeout(()=>$('pwrap').scrollIntoView({behavior:'smooth',block:'center'}),250);}
     else toast('كمّل رقم الرحلة و FROM / TO والأوقات لكل قطاع');};
 }
 
@@ -1301,9 +1396,9 @@ const jlHas=()=>state.sectors.some(s=>s.fl&&s.fr);
 function importJL(anim){
   const secs=state.sectors.filter(s=>s.fl&&s.fr);
   if(!secs.length){toast('اختر رحلة في الجورني لوق أولًا');return false;}
-  const m=rl.mode,nums=secs.map(s=>s.fl.replace(/^CWN/,'')),d0=secs[0].dt;
-  rl.flt=m==='cht'?'CWN'+nums[0]+nums.slice(1).map(n=>'/'+n.slice(-2)).join(''):'CWN '+nums[0]+nums.slice(1).map(n=>'/'+n.slice(-1)).join('');
-  rl.sec=secs.map((s,i)=>{const alt=ALTS[nums[i]]||['',''],pv=i?secs[i-1].dt:d0,nd=m==='cht'&&i>0&&s.dt&&pv&&!sameDay(s.dt,pv);
+  const m=rl.mode,P=splitFl(secs[0].fl)[0],nums=secs.map(s=>splitFl(s.fl)[1]),d0=secs[0].dt;
+  rl.flt=m==='cht'?P+nums[0]+nums.slice(1).map(n=>'/'+n.slice(-2)).join(''):P+' '+nums[0]+nums.slice(1).map(n=>'/'+n.slice(-1)).join('');
+  rl.sec=secs.map((s,i)=>{const alt=(P==='CWN'&&ALTS[nums[i]])||['',''],pv=i?secs[i-1].dt:d0,nd=m==='cht'&&i>0&&s.dt&&pv&&!sameDay(s.dt,pv);
     return{fl:s.fl,fr:s.fr,to:s.to,sd:(nd?pad(s.dt.getUTCDate())+'/ ':'')+s.sd,sa:s.sa,toalt:m==='cht'?'N/A':'NIL',a1:alt[0],a2:alt[1]||(m==='cht'?'-':'')};});
   const prev=rl.imported?rl.load:[];
   rl.load=secs.map((s,i)=>prev[i]?{...prev[i],type:prev[i].type||'SKD'}:{...emptyLoad(),pax:m==='cht'?'':(i===0?'P/':'/'),cargo:m==='cht'?'':'NIL',type:'SKD'});
@@ -1367,7 +1462,7 @@ const rfname=()=>`RELEASE_${(rl.flt||'CWN').replace(/[\s\/]+/g,'-')}_${pad(state
 function setMode2(m){rl.mode=m;document.querySelectorAll('.rmode button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));}
 function onShowRL(){
   rfit();
-  if(!rl.imported&&jlHas()){setMode2(state.mode==='cht'?'cht':'reg');setTimeout(()=>importJL(true),350);}
+  if(!rl.imported&&jlHas()){setMode2(isMan()?'cht':'reg');setTimeout(()=>importJL(true),350);}
   else rlStatus();
 }
 function initRelease(){
@@ -1425,17 +1520,17 @@ document.addEventListener('click',e=>{
 function updateToRL(){
   const ok=state.sectors.some(s=>s.fl&&s.fr),b=$('toRL');
   b.classList.toggle('on',ok);
-  if(ok){const s=state.sectors.filter(x=>x.fl),c=capOf();$('toRLsub').textContent=`${s.map(x=>x.fl.replace('CWN','')).join('/')} · ${c?c.code:'NO PIC'}`;}
+  if(ok){const s=state.sectors.filter(x=>x.fl),c=capOf();$('toRLsub').textContent=`${s.map(x=>splitFl(x.fl)[1]).join('/')} · ${c?c.code:'NO PIC'}`;}
 }
 let hoBusy=false;
 function handoff(){
   if(hoBusy)return;hoBusy=true;
   const h=$('handoff'),s=state.sectors.filter(x=>x.fl),c=capOf();
-  const chips=[s.map(x=>x.fl).join(' / '),[s[0].fr,...s.map(x=>x.to)].join('→'),c?`PIC ${c.code}`:'PIC —',`REL ${(()=>{const t=tmin(s[0].sd);return t==null?'--:--':hhmm(((t-(state.mode==='cht'?120:180))%1440+1440)%1440);})()}`];
+  const chips=[s.map(x=>x.fl).join(' / '),[s[0].fr,...s.map(x=>x.to)].join('→'),c?`PIC ${c.code}`:'PIC —',`REL ${(()=>{const t=tmin(s[0].sd);return t==null?'--:--':hhmm(((t-(isMan()?120:180))%1440+1440)%1440);})()}`];
   $('hoChips').innerHTML=chips.map((t,i)=>`<span class="ho-chip" style="--i:${i}">${esc(t)}</span>`).join('');
   $('hoTxt').innerHTML='جاري تحويل بيانات الرحلة إلى الريليز…<small>JOURNEY LOG → FLIGHT DISPATCH RELEASE</small>';
   // tell the release to re-import fresh data from this journey log
-  rl.imported=false;setMode2(state.mode==='cht'?'cht':'reg');
+  rl.imported=false;setMode2(isMan()?'cht':'reg');
   $('hoRow').style.setProperty('--s',Math.min(1,innerWidth*.92/560));
   h.className='handoff';void h.offsetWidth;h.classList.add('on');
   const T=(ms,f)=>setTimeout(f,ms);
@@ -1450,6 +1545,120 @@ function handoff(){
   });
 }
 
+
+/* ================= LEASE call signs ================= */
+function saveCS(cs,name){
+  cs=(cs||'').toUpperCase().trim();if(cs.length<2)return;
+  const ex=callsigns.find(c=>c.cs===cs);
+  if(ex){if(name)ex.name=name;}else{callsigns.push({cs,name:name||''});toast(`تم حفظ الكول ساين ${cs} في الإعدادات ✓`);}
+  store.set('cwn_callsigns',callsigns);renderCS();renderCSList();
+  if(cs===leaseCS){const h=callsigns.find(c=>c.cs===cs);$('csName').textContent=h&&h.name?h.name:'محفوظ ✓';}
+}
+function setCS(v){
+  leaseCS=(v||'').toUpperCase().replace(/[^A-Z]/g,'').slice(0,4);
+  $('csIn').value=leaseCS;
+  const hit=callsigns.find(c=>c.cs===leaseCS);$('csName').textContent=hit&&hit.name?hit.name:(leaseCS.length>=2&&!hit?'جديد — ينحفظ عند التعبئة':'');
+  document.querySelectorAll('#chtRows .pfx').forEach(e=>e.textContent=leaseCS||'···');
+  document.querySelectorAll('.cs-chip').forEach(c=>c.classList.toggle('on',c.dataset.cs===leaseCS));
+  if(state.mode==='lse')chtCompute(false);
+}
+function renderCS(){
+  const box=$('csChips');if(!box)return;
+  box.innerHTML=callsigns.map(c=>`<button class="cs-chip${c.cs===leaseCS?' on':''}" data-cs="${esc(c.cs)}">${esc(c.cs)}${c.name?`<small>${esc(c.name)}</small>`:''}</button>`).join('');
+  box.querySelectorAll('.cs-chip').forEach(b=>b.onclick=()=>setCS(b.dataset.cs));
+}
+function renderCSList(){
+  const box=$('csList');if(!box)return;
+  box.innerHTML=callsigns.length?callsigns.map((c,i)=>`<div class="cu"><span class="cd">${esc(c.cs)}</span><span class="nm">${esc(c.name||'—')}</span><button class="x" data-i="${i}">✕</button></div>`).join(''):'<div class="cm-empty">لا يوجد كول ساين محفوظ</div>';
+  box.querySelectorAll('.x').forEach(b=>b.onclick=()=>{const c=callsigns.splice(+b.dataset.i,1)[0];store.set('cwn_callsigns',callsigns);renderCSList();renderCS();if(c&&c.cs===leaseCS)setCS(leaseCS);});
+}
+function initLease(){
+  callsigns=store.get('cwn_callsigns',[]);
+  $('csIn').addEventListener('input',()=>setCS($('csIn').value));
+  $('csIn').addEventListener('change',()=>{if(leaseCS.length>=2&&!callsigns.find(c=>c.cs===leaseCS))saveCS(leaseCS);});
+  $('sCsAdd').onclick=()=>{const cs=$('sCs').value.toUpperCase().replace(/[^A-Z]/g,'');if(cs.length<2){toast('الكول ساين حرفين على الأقل');return;}
+    saveCS(cs,$('sCsName').value.trim().toUpperCase());$('sCs').value='';$('sCsName').value='';};
+  $('btnSettings').addEventListener('click',renderCSList);
+  renderCS();renderCSList();
+}
+
+/* ===================== LOCK (PIN + Face ID via WebAuthn) ===================== */
+const LOCK_H='430c04f4';
+const fnv=s=>{let h=0x811c9dc5;for(const b of new TextEncoder().encode(s)){h^=b;h=Math.imul(h,0x01000193)>>>0;}return h.toString(16).padStart(8,'0');};
+const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b)));
+const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const rnd=n=>crypto.getRandomValues(new Uint8Array(n));
+let pin='',fails=0,waitUntil=0;
+async function faceAvailable(){try{return !!(window.PublicKeyCredential&&await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable());}catch(e){return false;}}
+const credId=()=>{try{return localStorage.getItem('cwn_cred');}catch(e){return null;}};
+function lkDots(){document.querySelectorAll('#lkDots i').forEach((d,i)=>d.classList.toggle('on',i<pin.length));}
+function lkMsg(t,err){const m=$('lkMsg');m.textContent=t;m.classList.toggle('err',!!err);}
+function unlock(how){
+  const d=$('lkDots');d.classList.add('good');lkMsg(how==='face'?'تم التحقق بـ Face ID ✓':'تم ✓');
+  try{sessionStorage.setItem('cwn_unlocked','1');}catch(e){}
+  setTimeout(()=>{
+    $('lock').classList.add('open');document.body.dataset.lock='0';
+    show(document.body.dataset.view||'home');
+    setTimeout(async()=>{$('lock').classList.remove('open');d.classList.remove('good');pin='';lkDots();
+      if(how==='pin'&&!credId()&&await faceAvailable())offerFace();},1100);
+  },350);
+}
+function lockNow(){$('drawer').classList.remove('on');pin='';lkDots();lkMsg('أدخل الرمز السري');document.body.dataset.lock='1';try{sessionStorage.removeItem('cwn_unlocked');}catch(e){}refreshFaceBtn();}
+function press(k){
+  if(Date.now()<waitUntil){lkMsg(`انتظر ${Math.ceil((waitUntil-Date.now())/1000)} ثانية`,true);return;}
+  if(k==='del'){pin=pin.slice(0,-1);lkDots();return;}
+  if(pin.length>=6)return;
+  pin+=k;lkDots();if(navigator.vibrate)navigator.vibrate(8);
+  if(pin.length===6){
+    if(fnv('CROWN|'+pin+'|OPS')===LOCK_H){fails=0;unlock('pin');}
+    else{fails++;const d=$('lkDots');d.classList.add('bad');if(navigator.vibrate)navigator.vibrate([60,40,60]);
+      if(fails>=5){waitUntil=Date.now()+30000;fails=0;lkMsg('محاولات كثيرة — انتظر 30 ثانية',true);}else lkMsg(`الرمز غير صحيح (${5-fails} محاولات متبقية)`,true);
+      setTimeout(()=>{d.classList.remove('bad');pin='';lkDots();},520);}
+  }
+}
+async function faceLogin(){
+  const id=credId();if(!id)return;
+  try{
+    await navigator.credentials.get({publicKey:{challenge:rnd(32),allowCredentials:[{type:'public-key',id:unb64(id),transports:['internal']}],userVerification:'required',timeout:60000}});
+    unlock('face');
+  }catch(e){lkMsg('ما تم التحقق — استخدم الرمز',true);}
+}
+async function registerFace(){
+  try{
+    const c=await navigator.credentials.create({publicKey:{challenge:rnd(32),rp:{name:'CROWN OPS'},user:{id:rnd(16),name:'crown-ops',displayName:'CROWN OPS'},
+      pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'preferred'},timeout:60000}});
+    try{localStorage.setItem('cwn_cred',b64(c.rawId));}catch(e){}
+    toast('تم تفعيل Face ID ✓');refreshFaceBtn();
+  }catch(e){toast('ما تم تفعيل Face ID');}
+}
+function offerFace(){
+  const t=$('toast');t.innerHTML='تبي تفعّل الدخول بـ Face ID؟ <button class="btn primary" id="tFace" style="height:34px;margin-inline-start:8px">تفعيل</button>';
+  t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),8000);
+  $('tFace').onclick=()=>{t.classList.remove('on');registerFace();};
+}
+async function refreshFaceBtn(){
+  const ok=credId()&&await faceAvailable();$('lkFace').classList.toggle('on',!!ok);$('lkFaceKey').hidden=!ok;
+  const s=$('sFace');if(s){s.innerHTML=!(await faceAvailable())?'<div class="cm-empty">Face ID غير متاح على هذا الجهاز أو المتصفح</div>':credId()
+    ?'<div class="dbtns"><span class="note" style="flex:1;align-self:center">Face ID مفعّل ✓</span><button class="btn" id="sFaceOff">إيقاف</button></div>'
+    :'<div class="dbtns"><button class="btn primary" id="sFaceOn">تفعيل Face ID</button></div>';
+    if($('sFaceOn'))$('sFaceOn').onclick=registerFace;
+    if($('sFaceOff'))$('sFaceOff').onclick=()=>{try{localStorage.removeItem('cwn_cred');}catch(e){}refreshFaceBtn();toast('تم إيقاف Face ID');};}
+}
+function initLock(){
+  $('lkLogo').src=LOGO;
+  const keys=['1','2','3','4','5','6','7','8','9','face','0','del'];
+  $('lkPad').innerHTML=keys.map((k,i)=>k==='face'?`<button class="key ghost" id="lkFaceKey" data-k="face" style="--i:${i}" hidden aria-label="Face ID"><svg viewBox="0 0 24 24"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2M9 9v1M15 9v1M12 9v4h-1M9 16c1.6 1.3 4.4 1.3 6 0"/></svg></button>`
+    :k==='del'?`<button class="key ghost" data-k="del" style="--i:${i}" aria-label="حذف"><svg viewBox="0 0 24 24"><path d="M21 5H9l-7 7 7 7h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zM17 9l-6 6M11 9l6 6"/></svg></button>`
+    :`<button class="key" data-k="${k}" style="--i:${i}">${k}</button>`).join('');
+  $('lkPad').querySelectorAll('.key').forEach(b=>b.addEventListener('click',()=>b.dataset.k==='face'?faceLogin():press(b.dataset.k)));
+  $('lkFace').onclick=faceLogin;
+  addEventListener('keydown',e=>{if(document.body.dataset.lock!=='1')return;if(/^\d$/.test(e.key))press(e.key);else if(e.key==='Backspace')press('del');});
+  let ok=false;try{ok=sessionStorage.getItem('cwn_unlocked')==='1';}catch(e){}
+  document.body.dataset.lock=ok?'0':'1';
+  refreshFaceBtn();
+  document.querySelectorAll('[data-lockbtn]').forEach(b=>b.onclick=lockNow);
+}
+
 /* ================= init ================= */
 buildSheet();
 $('crestLogo').src=LOGO;
@@ -1461,7 +1670,7 @@ function shift(n){const [y,m,d]=$('date').value.split('-').map(Number);const t=n
   $('date').value=`${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`;onDate();}
 $('dPrev').onclick=()=>shift(-1);$('dNext').onclick=()=>shift(1);
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('date').value=utcISO(+c.dataset.off);onDate();});
-initCrew();initCharter();onDate();fit();initRelease();initHome();show(location.hash.slice(1)||'home');$('toRL').onclick=handoff;updateToRL();
+initCrew();initCharter();onDate();fit();initRelease();initLease();initHome();initLock();show(location.hash.slice(1)||'home');$('toRL').onclick=handoff;updateToRL();
 addEventListener('resize',fit);
 document.fonts&&document.fonts.ready.then(fit);
 new ResizeObserver(fit).observe($('pwrap'));
