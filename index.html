@@ -1056,6 +1056,19 @@ body[data-lock="1"] .dr-bg{display:none!important}
 .cap .dsheet .scanin{clip-path:none!important;color:inherit!important}
 #drscaler{position:absolute;top:0;left:0;transform-origin:top left;width:794px}
 
+/* daily rotation v2: bigger text, lighter golden weekday */
+.dsheet .dttl{font-size:19.5px!important}
+.dsheet .ddate{font-size:19.5px!important;margin-top:16px!important}
+.dsheet .dl{font-size:19px!important;margin-top:22px!important}
+.dsheet .dday{font-size:32px!important;color:#d9a066!important;font-weight:400!important;letter-spacing:.6px!important;margin-top:22px!important}
+.dtab{margin-left:96px!important;width:608px!important}
+.dtab th{font-size:17px!important;height:58px!important}
+.dtab td{font-size:17.5px!important}
+.dtab tr.f td{height:58px!important}
+.dtab tr.sep td{height:26px!important}
+
+.dsheet .dttl{display:flex;align-items:center;justify-content:center;gap:10px}
+.dsheet .dcalic{flex:none}
 @media print{
   .dr-bg,.dr-hero,.pk-bg,.pk-hero,.busintro,.pkc,.lock,.to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
   body[data-view="rl"] #viewJL{display:none!important}
@@ -1241,7 +1254,7 @@ body[data-lock="1"] .dr-bg{display:none!important}
 
     </div>
     <button class="h-set" id="hSet" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>إعدادات الطاقم</button>
-    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-C</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
+    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-D</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
   </div>
 </div>
 
@@ -2931,12 +2944,12 @@ function drSheet(anim){
       rows+=`<tr class="f"><td class="c1">${V(g.cpt)}</td><td class="c2">${V(g.fo)}</td><td class="c3">${V(g.pur)}</td><td class="c4">${V(l.fl)}</td><td class="c5">${route(l)}</td><td class="c6">${V(dep)}</td><td class="c7">${V(l.arr)}</td></tr>`;});
     rows+=`<tr class="sep"><td class="c1">-</td><td class="c2">-</td><td class="c3">-</td><td class="c4">-</td><td class="c5"></td><td class="c6">--</td><td class="c7">--</td></tr>`;});
   $('dsheet').innerHTML=`<img class="dlogo" src="${PK_LOGO}" alt="">
-    <div class="dttl"><span class="k">1</span>Daily Rotation Schedule</div>
+    <div class="dttl"><svg class="dcalic" width="27" height="30" viewBox="0 0 30 33"><rect x="1.5" y="3" width="27" height="28.5" rx="4" fill="#fff" stroke="#b07d4f" stroke-width="1.5"/><path d="M1.5 7a4 4 0 0 1 4-4h19a4 4 0 0 1 4 4v5h-27z" fill="#e07b39"/><text x="15" y="10.6" text-anchor="middle" font-family="Tinos,serif" font-size="6.6" fill="#fff" letter-spacing=".6">${["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][m-1]}</text><text x="15" y="27" text-anchor="middle" font-family="Tinos,serif" font-size="13" fill="#7030a0">${pad(d)}</text></svg>Daily Rotation Schedule</div>
     <div class="ddate">Date<b>: ${ord(d)}/${pad(m)}/${y}</b></div>
     <div class="dl">Aircraft: <b>${esc(dr.ac)}</b></div>
     <div class="dl">Base: ${esc(dr.base)}</div>
     <div class="dday">${DR_DAYS[dt.getUTCDay()]}</div>
-    <table class="dtab" id="dtab"><colgroup>${[68,68,96,91,74,96,91].map(w=>`<col style="width:${w}px">`).join('')}</colgroup>
+    <table class="dtab" id="dtab"><colgroup>${[70,70,100,95,79,100,94].map(w=>`<col style="width:${w}px">`).join('')}</colgroup>
       <tr><th>CPT</th><th>F/O</th><th>PURSER</th><th>Flight Nº</th><th style="text-align:left;padding-left:6px">Route</th><th>Departure<br>(<mark>UTC</mark>)</th><th>Arrival<br>(<mark>UTC</mark>)</th></tr>
       ${rows}<tr class="fill" id="drFill"><td class="c1"></td><td class="c2"></td><td class="c3"></td><td class="c4"></td><td class="c5"></td><td class="c6"></td><td class="c7"></td></tr></table>`;
   const tab=$('dtab'),fill=$('drFill');fill.firstElementChild.style.height='0px';
