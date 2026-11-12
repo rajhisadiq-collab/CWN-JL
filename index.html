@@ -1149,7 +1149,7 @@ body[data-view="st"] #viewST{display:block}
 
     </div>
     <button class="h-set" id="hSet" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>إعدادات الطاقم</button>
-    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-A</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
+    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-B</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
   </div>
 </div>
 
@@ -2394,9 +2394,9 @@ function pkSheet(anim){
   const DL=pk.delayed&&pk.dlyOn!==false,DT=v=>{const x=V(v);return x&&DL?`<mark class="hlm">${x}</mark>`:x;};
   let rows='';
   for(let i=0;i<n;i++){const m=L[i];
-    if(m&&m.ph){rows+=`<tr class="tr3"><td class="rn">${i+1}</td><td class="rl">متدرب</td><td>---</td><td class="tm">---</td><td>---</td><td class="ph">---</td><td></td></tr>`;continue;}
+    if(m&&m.ph){rows+=`<tr class="tr3"><td class="rn">${i+1}</td><td class="rl">متدرب</td><td>---</td><td class="tm">---</td><td>---</td><td class="ph">---</td><td class="nn">---</td></tr>`;continue;}
     if(m){const no=m.none,H=v=>{const x=V(v);return x&&m.hl&&!m.struck?`<mark class="hlm">${x}</mark>`:x;};
-      rows+=`<tr${m.struck?' class="st"':''}><td class="rn">${i+1}</td><td class="rl">${H(m.role)}</td><td>${H(m.name)}</td><td class="tm">${(()=>{const x=H(no?'---':m.time);return x&&((m.dly&&DL)||m.thl)&&!m.struck&&!m.hl&&!no?`<mark class="hlm">${x}</mark>`:x;})()}</td><td>${H(no?'---':m.area)}</td><td class="ph">${H(no?'---':m.phone)}</td><td class="nn">${H(m.note)}</td></tr>`;}
+      rows+=`<tr${m.struck?' class="st"':''}><td class="rn">${i+1}</td><td class="rl">${H(m.role)}</td><td>${H(m.name)}</td><td class="tm">${(()=>{const x=H(no?'---':m.time);return x&&((m.dly&&DL)||m.thl)&&!m.struck&&!m.hl&&!no?`<mark class="hlm">${x}</mark>`:x;})()}</td><td>${H(no?'---':m.area)}</td><td class="ph">${H(no?'---':m.phone)}</td><td class="nn">${H(m.note||(no?'---':''))}</td></tr>`;}
     else rows+=`<tr class="e"><td class="rn">${i+1}</td><td class="rl">${PK_TPL[i]||''}</td><td></td><td></td><td></td><td></td><td></td></tr>`;
   }
   const F=(v,g)=>`<i class="fill" style="flex-grow:${g}">${v?`<b>${esc(v)}</b>`:''}</i>`;
