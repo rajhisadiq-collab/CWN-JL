@@ -978,12 +978,91 @@ body[data-view="st"] #viewST{display:block}
 .pmt td.rn{font-size:15px!important}
 .pfoot{font-size:14.5px!important}
 .pfoot .fill b{font-weight:400!important}
+/* ===================== DAILY ROTATION ===================== */
+body[data-view="dr"] #viewDR{display:block}
+#viewDR{--gold:#a96bd6;--gold2:#dcc2f5}
+.hcard.dr{--c:#9b5bd1;--c2:#dcc2f5}
+.hcard.dr::before{animation-duration:5.4s}
+.dr-bar{animation:drbar 3.2s cubic-bezier(.45,0,.55,1) infinite;transform-box:fill-box;transform-origin:left}
+.dr-bar.b2{animation-delay:.35s}.dr-bar.b3{animation-delay:.7s}.dr-bar.b4{animation-delay:1.05s}
+@keyframes drbar{0%{transform:scaleX(0);opacity:0}25%,75%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+.dr-clock{transform-box:fill-box;transform-origin:center;animation:spin 4s linear infinite}
+.dr-bg{position:fixed;inset:0;z-index:0;pointer-events:none;display:none;background:radial-gradient(900px 520px at 80% -10%,rgba(155,91,209,.2),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(112,48,160,.18),transparent 60%)}
+body[data-view="dr"] .dr-bg{display:block}
+body[data-lock="1"] .dr-bg{display:none!important}
+.dr-hero{display:flex;align-items:center;gap:14px;padding:20px 4px 6px}
+.dr-hero h1{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:4px;color:var(--gold2);direction:ltr;display:flex;text-shadow:0 0 18px rgba(155,91,209,.6)}
+.dr-hero h1 span{display:inline-block;animation:letter .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*.045s)}
+.dr-hero p{color:var(--muted);font-size:12.5px;margin-top:3px}
+@media (max-width:560px){.dr-hero h1{font-size:19px;letter-spacing:2px}}
+#viewDR .dmain{border-color:rgba(155,91,209,.5);background:linear-gradient(150deg,rgba(155,91,209,.18),rgba(0,0,0,.35))}
+#viewDR .dnav{border-color:rgba(155,91,209,.4)}
+#viewDR .dcal{stroke:var(--gold)}
+#viewDR .dmain input{-webkit-appearance:none;appearance:none;min-width:0}
+.dr-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.dr-meta label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);min-width:0}
+.dr-in{height:46px;border-radius:12px;border:1px solid rgba(155,91,209,.4);background:rgba(0,0,0,.3);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:16px;padding:0 10px;outline:none;width:100%;min-width:0;box-sizing:border-box;direction:ltr;text-align:center;text-transform:uppercase}
+.dr-in:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(155,91,209,.18)}
+.dr-meta .w{grid-column:1/-1}
+.dr-meta .w .dr-in{text-transform:none;text-align:left;font-family:inherit}
+.dr-reload{width:100%;margin-top:10px;justify-content:center;height:44px;border-color:rgba(155,91,209,.45);color:var(--gold2)}
+.drg{position:relative;padding:12px;border-radius:18px;margin-bottom:12px;background:linear-gradient(160deg,rgba(155,91,209,.12),rgba(0,0,0,.25));border:1px solid rgba(155,91,209,.35);animation:slidein .45s both;animation-delay:calc(var(--i)*.06s)}
+.drg-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.drg-h b{flex:1;font-size:14px;color:var(--gold2)}
+.drg-h small{color:var(--muted);font-size:11.5px;font-weight:400}
+.drc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.drc label{display:flex;flex-direction:column;gap:4px;font-size:10.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.5px;min-width:0}
+.drc .nm{font-family:'IBM Plex Sans Arabic',sans-serif;font-size:11px;letter-spacing:0;color:#c9b8dc;min-height:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drc .nm.bad{color:#ff9a9a}
+.drl{display:grid;grid-template-columns:1.25fr .8fr .8fr 1fr 1fr 32px;gap:6px;align-items:center;margin-top:8px;direction:ltr}
+.drl .dr-in{height:42px;font-size:13.5px;padding:0 1px;letter-spacing:-.2px}
+.drl,.drl-h{grid-template-columns:1.2fr .78fr .78fr 1.05fr 1.05fr 28px!important;gap:4px!important}
+.drl .x{width:28px!important;height:28px!important}
+.drl .x{width:32px;height:32px}
+.drl-h{display:grid;grid-template-columns:1.25fr .8fr .8fr 1fr 1fr 32px;gap:6px;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);direction:ltr;text-align:center}
+.drl.nx .dr-in[data-k=dep]{border-color:#e6a04b}
+.dr-add{width:100%;margin-top:10px;height:40px;justify-content:center;border-style:dashed;border-color:rgba(155,91,209,.5);color:var(--gold2)}
+.dr-addg{width:100%;height:48px;justify-content:center;background:linear-gradient(145deg,#dcc2f5,#a96bd6);color:#1d0b2b;border:0;font-weight:700}
+.drs{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);margin-bottom:8px}
+.drs.on{border-color:var(--gold);background:rgba(155,91,209,.12)}
+.drs .w{flex:1;min-width:0}.drs .w b{display:block;font-size:14.5px}.drs .w small{color:var(--muted);font-size:12px}
+.drs .btn{height:36px;font-size:12.5px;padding:0 12px}
+#drSavedCard[hidden]{display:none}
+#viewDR .btn.primary{background:linear-gradient(145deg,#dcc2f5,#a96bd6);color:#1d0b2b}
+/* the sheet (A4) */
+.dsheet{position:relative;width:794px;min-height:1123px;background:#fff;color:#111;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;direction:ltr;padding:40px 0 30px}
+.dsheet,.dsheet *{font-family:Tinos,'Times New Roman',serif!important}
+.dsheet .dlogo{display:block;height:118px;margin:0 auto}
+.dsheet .dttl{text-align:center;font-size:16.5px;margin-top:20px}
+.dsheet .dttl .k{display:inline-block;width:14px;height:14px;border:1px solid #444;border-radius:2px;font-size:10px;line-height:13px;text-align:center;margin-right:7px;vertical-align:1px}
+.dsheet .ddate{text-align:center;font-size:16.5px;margin-top:14px}
+.dsheet .ddate b{font-weight:700}
+.dsheet .dl{font-size:16.5px;margin:20px 0 0 36px}
+.dsheet .dl b{font-weight:700}
+.dsheet .dday{font-size:28px;color:#e07b39;margin:20px 0 0 36px;letter-spacing:.3px;line-height:1}
+.dtab{margin:2px 0 0 108px;width:584px;border-collapse:collapse;table-layout:fixed}
+.dtab th{background:#a5a5a5;color:#1a1a1a;font-weight:400;font-size:15.5px;height:54px;vertical-align:top;padding-top:5px;line-height:1.25}
+.dtab th mark{background:#ffff00;color:inherit;padding:0}
+.dtab td,.dtab th{border:0!important}
+.dtab td{font-size:15.5px;text-align:center;vertical-align:top;padding:8px 2px 0;line-height:1.3}
+.dtab td.c1{background:#8eaadb}.dtab td.c2{background:#b4c6e7}.dtab td.c3{background:#d9e1f2}
+.dtab td.c4{background:#7030a0;color:#fff}
+.dtab td.c5,.dtab td.c6,.dtab td.c7{background:#ededed}
+.dtab td.c5{text-align:left;padding-left:6px}
+.dtab tr.f td{height:53px}
+.dtab tr.sep td{height:24px;padding-top:0}
+.dtab tr.fill td{padding:0}
+.dsheet .scanin{animation:scanin .55s cubic-bezier(.2,.8,.2,1) both}
+.cap .dsheet .scanin{clip-path:none!important;color:inherit!important}
+#drscaler{position:absolute;top:0;left:0;transform-origin:top left;width:794px}
 
 @media print{
-  .pk-bg,.pk-hero,.busintro,.pkc,.lock,.to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
+  .dr-bg,.dr-hero,.pk-bg,.pk-hero,.busintro,.pkc,.lock,.to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
   body[data-view="rl"] #viewJL{display:none!important}
   body[data-view="rl"] #rscaler{transform:scale(.92)!important}
   body[data-view="pk"] #pkscaler{transform:scale(.92)!important}
+  body[data-view="dr"] #drscaler{transform:scale(.95)!important}
+  body[data-view="dr"] .dsheet{box-shadow:none!important}
   body[data-view="pk"] .psheet{box-shadow:none!important}
   .psheet .scanin{clip-path:none!important;color:inherit!important}
   body[data-view="rl"] .rsheet{box-shadow:none!important}
@@ -1146,10 +1225,23 @@ body[data-view="st"] #viewST{display:block}
         </svg></div>
         <h2>PICKUP CREW</h2><p>طلب نقل الأطقم الجوية</p>
         <div class="hc-go"><span>فتح</span><b>←</b></div></div></a>
+      <a class="hcard dr" href="#dr" data-go="dr" style="--i:3"><div class="hc-in"><div class="hc-shine"></div>
+        <div class="hc-art"><svg viewBox="0 0 320 120" preserveAspectRatio="xMidYMid meet">
+          <rect x="22" y="14" width="34" height="92" rx="5" fill="#8eaadb" opacity=".35"/><rect x="60" y="14" width="34" height="92" rx="5" fill="#b4c6e7" opacity=".3"/>
+          <rect x="98" y="14" width="40" height="92" rx="5" fill="#7030a0" opacity=".55"/>
+          <rect class="dr-bar" x="146" y="22" width="120" height="12" rx="6" fill="#dcc2f5"/>
+          <rect class="dr-bar b2" x="146" y="44" width="96" height="12" rx="6" fill="#b48ade"/>
+          <rect class="dr-bar b3" x="146" y="66" width="132" height="12" rx="6" fill="#dcc2f5"/>
+          <rect class="dr-bar b4" x="146" y="88" width="80" height="12" rx="6" fill="#b48ade"/>
+          <g transform="translate(282 18)"><circle cx="14" cy="14" r="13" fill="none" stroke="#dcc2f5" stroke-width="2"/><line class="dr-clock" x1="14" y1="14" x2="14" y2="5" stroke="#dcc2f5" stroke-width="2" stroke-linecap="round"/></g>
+        </svg></div>
+        <h2>DAILY ROTATION</h2><p>Daily Rotation Schedule · الطاقم والرحلات</p>
+        <div class="hc-go"><span>فتح</span><b>←</b></div></div></a>
+
 
     </div>
     <button class="h-set" id="hSet" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>إعدادات الطاقم</button>
-    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-B</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
+    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-C</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
   </div>
 </div>
 
@@ -1333,6 +1425,51 @@ body[data-view="st"] #viewST{display:block}
   </div>
   <div class="pkc-btns"><button class="btn primary" id="stSaveBtn" type="button">حفظ</button><button class="btn" id="stReset" type="button" hidden>ترجيع الأصل</button><button class="btn st-del" id="stDel" type="button" hidden>حذف</button></div>
 </div></div>
+<div class="dr-bg"></div>
+<div class="view" id="viewDR">
+<div class="wrap">
+  <header class="dr-hero">
+    <a class="homebtn" href="#home" aria-label="الرئيسية"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg></a>
+    <div><h1 id="drH1"></h1><p>Daily Rotation Schedule · الأوقات UTC</p></div>
+  </header>
+  <div class="grid">
+    <div class="col side">
+      <section class="card" id="drSavedCard" hidden><h2><span class="num">★</span>المحفوظة</h2><div id="drSaved"></div></section>
+      <section class="card">
+        <h2><span class="num">1</span>اليوم</h2>
+        <div class="datebox">
+          <button class="dnav" id="drPrev" type="button"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+          <label class="dmain"><input type="date" id="drDate" aria-label="التاريخ"><span class="dday" id="drDay">—</span><span class="dnum" id="drNum">--/--/----</span>
+            <svg class="dcal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></label>
+          <button class="dnav" id="drNext" type="button"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        </div>
+        <div class="dr-meta"><label>Aircraft<input class="dr-in" id="drAc" value="5A-TAJ"></label><label>Prefix<input class="dr-in" id="drPfx" value="FQ" maxlength="4"></label>
+          <label class="w">Base<input class="dr-in" id="drBase" value="Mitiga International Airport (MJI)"></label></div>
+        <button class="btn dr-reload" id="drReload" type="button">⟳ تحميل رحلات الجدول لهذا اليوم</button>
+      </section>
+      <section class="card">
+        <h2><span class="num">2</span>الدورات والطاقم</h2>
+        <div id="drGroups"></div>
+        <button class="btn dr-addg" id="drAddG" type="button">+ دورة جديدة (شارتر)</button>
+        <datalist id="drCPT"></datalist><datalist id="drFO"></datalist><datalist id="drPUR"></datalist>
+      </section>
+    </div>
+    <section class="card preview">
+      <div class="bar">
+        <h2><span class="num">3</span>المعاينة</h2>
+        <div class="actions">
+          <button class="btn primary" id="drPdf"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>تحميل PDF</button>
+          <button class="btn" id="drPng"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>صورة PNG</button>
+          <button class="btn" id="drSave"><svg viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h8V3M8 21v-7h8v7"/></svg>حفظ</button>
+          <button class="btn" id="drZoom"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>تكبير</button>
+          <button class="btn" id="drPrint"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>طباعة</button>
+        </div>
+      </div>
+      <div class="pwrap tap" id="drwrap"><div id="drscaler"><div class="dsheet sheet-in" id="dsheet"></div></div></div>
+    </section>
+  </div>
+</div>
+</div>
 <div class="handoff" id="handoff">
   <div class="ho-stage">
     <div class="ho-row" id="hoRow">
@@ -2013,12 +2150,13 @@ function initRelease(){
 
 /* ===================== HOME + ROUTER ===================== */
 function show(v){
-  if(!['home','jl','rl','pk','st'].includes(v))v='home';
+  if(!['home','jl','rl','pk','st','dr'].includes(v))v='home';
   document.body.dataset.view=v;scrollTo(0,0);
   if(v==='jl')requestAnimationFrame(fit);
   if(v==='rl')requestAnimationFrame(onShowRL);
   if(v==='pk')requestAnimationFrame(pkFit);
   if(v==='st')stRender();
+  if(v==='dr'){drFillLists();requestAnimationFrame(()=>drSheet(true));}
 }
 function initHome(){
   $('homeLogo').src=LOGO;
@@ -2032,7 +2170,7 @@ function initHome(){
       if(c.dataset.go==='pk'){busIntro();return;}
       const go=c.dataset.go,w=document.createElement('div');w.className='warp';
       w.style.setProperty('--wx',e.clientX+'px');w.style.setProperty('--wy',e.clientY+'px');
-      w.style.setProperty('--wc',go==='rl'?'#0d3b3a':'#3a2c12');w.style.setProperty('--wc2',go==='rl'?'#4fd1c5':'#d6b26e');
+      w.style.setProperty('--wc',go==='rl'?'#0d3b3a':go==='dr'?'#2a1140':'#3a2c12');w.style.setProperty('--wc2',go==='rl'?'#4fd1c5':go==='dr'?'#a96bd6':'#d6b26e');
       document.body.appendChild(w);requestAnimationFrame(()=>w.classList.add('go'));
       setTimeout(()=>{window.go(go);w.classList.add('out');setTimeout(()=>w.remove(),520);},540);
     });
@@ -2044,7 +2182,7 @@ function go(v){show(v);try{history.pushState({v},'','#'+v);}catch(e){}}
 addEventListener('popstate',()=>show((location.hash||'#home').slice(1)));
 document.addEventListener('click',e=>{
   const a=e.target.closest('a[href^="#"]');if(!a||a.classList.contains('hcard'))return;
-  const v=a.getAttribute('href').slice(1);if(!['home','jl','rl','pk','st'].includes(v))return;
+  const v=a.getAttribute('href').slice(1);if(!['home','jl','rl','pk','st','dr'].includes(v))return;
   e.preventDefault();go(v);
 });
 
@@ -2738,6 +2876,135 @@ function initSettings(){
   stRender();
 }
 
+/* ===================== DAILY ROTATION ===================== */
+const DR_DAYS=['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+let dr={date:'',ac:'5A-TAJ',base:'Mitiga International Airport (MJI)',pfx:'FQ',groups:[],savedId:null};
+let drSaved=[];
+const drEmptyLeg=()=>({fl:'',fr:'',to:'',dep:'',arr:''});
+function drLoadSchedule(){
+  const [y,m,d]=dr.date.split('-').map(Number),dow=new Date(Date.UTC(y,m-1,d)).getUTCDay();
+  const keep=dr.groups;
+  dr.groups=SCHED[dow].map((pair,i)=>({cpt:(keep[i]||{}).cpt||'',fo:(keep[i]||{}).fo||'',pur:(keep[i]||{}).pur||'',
+    legs:pair.map(l=>({fl:dr.pfx+l.n,fr:l.f,to:l.t,dep:l.d,arr:l.a}))}));
+}
+function drOffsets(g){let prevA=null,day=0;return g.legs.map(l=>{const d=tmin(l.dep),a=tmin(l.arr);if(d==null)return 0;
+  if(prevA!=null&&d<prevA)day++;const dd=day;if(a!=null&&a<d)day++;prevA=a!=null?a:d;return dd;});}
+const drName=(code,ranks)=>{if(!code)return null;const r=REG.find(x=>x.code===code&&ranks.includes(x.rank)&&x.status!=='retired');return r?(r.ar||r.en):'';};
+function drRenderEditor(newG){
+  const box=$('drGroups');
+  box.innerHTML=dr.groups.map((g,gi)=>{const off=drOffsets(g);
+    const nm=(v,rk)=>{const n=drName(v,rk);return n===null?'':n?esc(n):'<span class="bad">غير موجود</span>';};
+    return `<div class="drg" data-g="${gi}" style="--i:${gi}">
+      <div class="drg-h"><b>دورة ${gi+1} <small>${g.legs.map(l=>esc(l.fl)).filter(Boolean).join(' · ')}</small></b><button class="x" data-del-g="${gi}" type="button" aria-label="حذف الدورة">✕</button></div>
+      <div class="drc">
+        <label>CPT<input class="dr-in" data-c="cpt" list="drCPT" maxlength="4" value="${esc(g.cpt)}" autocomplete="off"><span class="nm">${nm(g.cpt,['CPT'])}</span></label>
+        <label>F/O<input class="dr-in" data-c="fo" list="drFO" maxlength="4" value="${esc(g.fo)}" autocomplete="off"><span class="nm">${nm(g.fo,['F/O','CPT'])}</span></label>
+        <label>PURSER<input class="dr-in" data-c="pur" list="drPUR" maxlength="4" value="${esc(g.pur)}" autocomplete="off"><span class="nm">${nm(g.pur,['PURS','C/C'])}</span></label>
+      </div>
+      <div class="drl-h"><span>FLT</span><span>FROM</span><span>TO</span><span>DEP Z</span><span>ARR Z</span><span></span></div>
+      ${g.legs.map((l,li)=>`<div class="drl${off[li]?' nx':''}" data-l="${li}">
+        <input class="dr-in" data-k="fl" value="${esc(l.fl)}" maxlength="8"><input class="dr-in" data-k="fr" value="${esc(l.fr)}" maxlength="4">
+        <input class="dr-in" data-k="to" value="${esc(l.to)}" maxlength="4"><input class="dr-in" data-k="dep" value="${esc(l.dep)}" inputmode="numeric" maxlength="5">
+        <input class="dr-in" data-k="arr" value="${esc(l.arr)}" inputmode="numeric" maxlength="5"><button class="x" data-del-l="${li}" type="button" aria-label="حذف">✕</button></div>`).join('')}
+      <button class="btn dr-add" data-add-l="${gi}" type="button">+ رحلة</button></div>`;}).join('')||'<div class="cm-empty">ما في دورات — حمّل رحلات الجدول أو أضف دورة</div>';
+  box.querySelectorAll('.drg').forEach(el=>{const g=dr.groups[+el.dataset.g];
+    el.querySelectorAll('[data-c]').forEach(inp=>inp.addEventListener('input',()=>{inp.value=inp.value.toUpperCase().replace(/[^A-Z]/g,'');g[inp.dataset.c]=inp.value;
+      const rk=inp.dataset.c==='cpt'?['CPT']:inp.dataset.c==='fo'?['F/O','CPT']:['PURS','C/C'];const n=drName(inp.value,rk),sp=inp.nextElementSibling;
+      sp.innerHTML=n===null?'':n?esc(n):'<span class="bad">غير موجود</span>';drSheet(false);}));
+    el.querySelectorAll('.drl').forEach(row=>{const l=g.legs[+row.dataset.l];
+      row.querySelectorAll('[data-k]').forEach(inp=>inp.addEventListener('input',()=>{const k=inp.dataset.k;
+        if(k==='dep'||k==='arr')tFmt(inp);else inp.value=inp.value.toUpperCase().replace(k==='fl'?/[^0-9A-Z]/g:/[^A-Z]/g,'');
+        l[k]=inp.value;const off=drOffsets(g);el.querySelectorAll('.drl').forEach((r,i)=>r.classList.toggle('nx',!!off[i]));drSheet(false);}));
+      row.querySelector('[data-del-l]').onclick=()=>{g.legs.splice(+row.dataset.l,1);drRenderEditor();drSheet(false);};});
+    el.querySelector('[data-add-l]').onclick=()=>{const p=g.legs[g.legs.length-1]||{};g.legs.push({...drEmptyLeg(),fl:dr.pfx,fr:p.to||''});drRenderEditor();drSheet(false);
+      const r=$('drGroups').querySelectorAll(`.drg[data-g="${el.dataset.g}"] .drl`);const f=r[r.length-1];if(f)f.querySelector('[data-k=fl]').focus();};
+    el.querySelector('[data-del-g]').onclick=()=>{if(!confirm(`حذف دورة ${+el.dataset.g+1}؟`))return;dr.groups.splice(+el.dataset.g,1);drRenderEditor();drSheet(false);};
+  });
+}
+function drSheet(anim){
+  const [y,m,d]=dr.date.split('-').map(Number),dt=new Date(Date.UTC(y,m-1,d));
+  let t=0;const V=v=>{v=v==null?'':String(v);if(!v)return'';if(!anim)return esc(v);const s=`<span class="scanin" style="display:inline-block;animation-delay:${t}ms">${esc(v)}</span>`;t+=14;return s;};
+  const route=l=>l.fr||l.to?`${V(l.fr)} →<br>${V(l.to)}`:'';
+  let rows='';
+  dr.groups.forEach(g=>{const off=drOffsets(g);
+    g.legs.forEach((l,i)=>{const dep=l.dep?(off[i]&&off[i]!==(i?off[i-1]:0)?`${pad(new Date(dt.getTime()+off[i]*864e5).getUTCDate())}/${l.dep}`:l.dep):'';
+      rows+=`<tr class="f"><td class="c1">${V(g.cpt)}</td><td class="c2">${V(g.fo)}</td><td class="c3">${V(g.pur)}</td><td class="c4">${V(l.fl)}</td><td class="c5">${route(l)}</td><td class="c6">${V(dep)}</td><td class="c7">${V(l.arr)}</td></tr>`;});
+    rows+=`<tr class="sep"><td class="c1">-</td><td class="c2">-</td><td class="c3">-</td><td class="c4">-</td><td class="c5"></td><td class="c6">--</td><td class="c7">--</td></tr>`;});
+  $('dsheet').innerHTML=`<img class="dlogo" src="${PK_LOGO}" alt="">
+    <div class="dttl"><span class="k">1</span>Daily Rotation Schedule</div>
+    <div class="ddate">Date<b>: ${ord(d)}/${pad(m)}/${y}</b></div>
+    <div class="dl">Aircraft: <b>${esc(dr.ac)}</b></div>
+    <div class="dl">Base: ${esc(dr.base)}</div>
+    <div class="dday">${DR_DAYS[dt.getUTCDay()]}</div>
+    <table class="dtab" id="dtab"><colgroup>${[68,68,96,91,74,96,91].map(w=>`<col style="width:${w}px">`).join('')}</colgroup>
+      <tr><th>CPT</th><th>F/O</th><th>PURSER</th><th>Flight Nº</th><th style="text-align:left;padding-left:6px">Route</th><th>Departure<br>(<mark>UTC</mark>)</th><th>Arrival<br>(<mark>UTC</mark>)</th></tr>
+      ${rows}<tr class="fill" id="drFill"><td class="c1"></td><td class="c2"></td><td class="c3"></td><td class="c4"></td><td class="c5"></td><td class="c6"></td><td class="c7"></td></tr></table>`;
+  const tab=$('dtab'),fill=$('drFill');fill.firstElementChild.style.height='0px';
+  const used=tab.offsetTop+tab.offsetHeight,room=1123-30-used;[...fill.children].forEach(c=>c.style.height=Math.max(20,room)+'px');
+  drFit();
+}
+function drFit(){const w=$('drwrap').clientWidth;if(!w)return;const s=Math.min(1,w/794);$('drscaler').style.transform=`scale(${s})`;$('drwrap').style.height=($('dsheet').offsetHeight*s)+'px';}
+function drShowDate(){const [y,m,d]=dr.date.split('-').map(Number);const dow=new Date(Date.UTC(y,m-1,d)).getUTCDay();
+  $('drDay').textContent=DAYS[dow];$('drNum').textContent=`${pad(d)}/${pad(m)}/${y}`;[$('drDay'),$('drNum')].forEach(e=>{e.classList.remove('pop');void e.offsetWidth;e.classList.add('pop');});}
+function drSetDate(v,load){dr.date=v;$('drDate').value=v;drShowDate();if(load){drLoadSchedule();drRenderEditor();}drSheet(true);}
+const drFile=ext=>{const [y,m,d]=dr.date.split('-');return `DAILY_ROTATION_${d}-${m}-${y}.${ext}`;};
+async function drPng(){
+  $('overlay').classList.add('on');
+  try{await document.fonts.ready;const el=$('dsheet'),sc=Math.max(2,Math.min(4,Math.floor(Math.sqrt(16000000/(el.offsetWidth*el.offsetHeight))*10)/10));
+    const c=await html2canvas(el,{scale:sc,backgroundColor:'#ffffff',useCORS:true,windowWidth:1400,imageTimeout:0,
+      onclone:doc=>{doc.body.classList.add('cap');doc.getElementById('drscaler').style.transform='none';doc.getElementById('drwrap').style.height='auto';}});
+    const blob=await new Promise(r=>c.toBlob(r,'image/png'));return new File([blob],drFile('png'),{type:'image/png'});
+  }finally{$('overlay').classList.remove('on');}
+}
+const drStore=()=>{try{localStorage.setItem('dr_saved',JSON.stringify(drSaved));}catch(e){}};
+function drSave(silent){
+  const snap={date:dr.date,ac:dr.ac,base:dr.base,pfx:dr.pfx,groups:JSON.parse(JSON.stringify(dr.groups)),savedAt:Date.now()};
+  let r=dr.savedId&&drSaved.find(x=>x.id===dr.savedId);
+  if(!r)r=drSaved.find(x=>x.date===dr.date);
+  if(r)Object.assign(r,snap);else{r={...snap,id:'D'+Date.now().toString(36)};drSaved.push(r);}
+  dr.savedId=r.id;drStore();drRenderSaved();if(!silent)toast('تم الحفظ ✓');
+}
+function drRenderSaved(){
+  const lim=Date.now()-3*864e5;drSaved=drSaved.filter(r=>Date.parse(r.date+'T23:59:59Z')>lim);drStore();
+  $('drSavedCard').hidden=!drSaved.length;
+  $('drSaved').innerHTML=[...drSaved].sort((a,b)=>a.date.localeCompare(b.date)).map(r=>{const [y,m,d]=r.date.split('-'),dow=new Date(Date.UTC(+y,m-1,+d)).getUTCDay();
+    return `<div class="drs${dr.savedId===r.id?' on':''}" data-id="${r.id}"><div class="w"><b>${DAYS[dow]} ${d}/${m}</b><small>${r.groups.length} دورات · ${r.groups.reduce((s,g)=>s+g.legs.length,0)} رحلات</small></div>
+      <button class="btn" data-a="open" type="button">${dr.savedId===r.id?'مفتوح':'فتح'}</button><button class="x" data-a="del" type="button">✕</button></div>`;}).join('');
+  $('drSaved').querySelectorAll('.drs').forEach(el=>{const r=drSaved.find(x=>x.id===el.dataset.id);
+    el.querySelector('[data-a=open]').onclick=()=>{Object.assign(dr,{date:r.date,ac:r.ac,base:r.base,pfx:r.pfx||'FQ',groups:JSON.parse(JSON.stringify(r.groups)),savedId:r.id});
+      $('drAc').value=dr.ac;$('drBase').value=dr.base;$('drPfx').value=dr.pfx;drSetDate(dr.date,false);drRenderEditor();drRenderSaved();};
+    el.querySelector('[data-a=del]').onclick=()=>{if(!confirm('حذف هذا الجدول المحفوظ؟'))return;drSaved=drSaved.filter(x=>x!==r);if(dr.savedId===r.id)dr.savedId=null;drStore();drRenderSaved();};});
+}
+function drFillLists(){
+  const opt=rk=>REG.filter(r=>rk.includes(r.rank)&&r.status==='active').map(r=>`<option value="${esc(r.code)}">${esc(r.ar||r.en)}</option>`).join('');
+  $('drCPT').innerHTML=opt(['CPT']);$('drFO').innerHTML=opt(['F/O']);$('drPUR').innerHTML=opt(['PURS','C/C']);
+}
+function initDR(){
+  $('drH1').innerHTML=[...'DAILY ROTATION'].map((c,i)=>`<span style="--i:${i}">${c===' '?'&nbsp;':c}</span>`).join('');
+  try{drSaved=JSON.parse(localStorage.getItem('dr_saved')||'[]');}catch(e){drSaved=[];}
+  const sh=n=>{const [y,m,d]=dr.date.split('-').map(Number),t=new Date(Date.UTC(y,m-1,d+n));drSetDate(`${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`,true);dr.savedId=null;drRenderSaved();};
+  $('drPrev').onclick=()=>sh(-1);$('drNext').onclick=()=>sh(1);
+  $('drDate').addEventListener('change',()=>{if($('drDate').value){dr.savedId=null;drSetDate($('drDate').value,true);drRenderSaved();}});
+  $('drDate').addEventListener('click',e=>{try{e.target.showPicker&&e.target.showPicker();}catch(_){}});
+  $('drAc').addEventListener('input',e=>{dr.ac=e.target.value.toUpperCase();drSheet(false);});
+  $('drBase').addEventListener('input',e=>{dr.base=e.target.value;drSheet(false);});
+  $('drPfx').addEventListener('input',e=>{const o=dr.pfx;dr.pfx=e.target.value.toUpperCase().replace(/[^A-Z]/g,'');e.target.value=dr.pfx;
+    dr.groups.forEach(g=>g.legs.forEach(l=>{if(o&&l.fl.startsWith(o))l.fl=dr.pfx+l.fl.slice(o.length);}));drRenderEditor();drSheet(false);});
+  $('drReload').onclick=()=>{if(dr.groups.length&&!confirm('ترجع رحلات الجدول لهذا اليوم؟ (الطاقم المكتوب يبقى)'))return;drLoadSchedule();drRenderEditor();drSheet(true);};
+  $('drAddG').onclick=()=>{dr.groups.push({cpt:'',fo:'',pur:'',legs:[{...drEmptyLeg(),fl:dr.pfx,fr:'MJI'}]});drRenderEditor();drSheet(false);
+    const gs=$('drGroups').querySelectorAll('.drg');gs[gs.length-1].scrollIntoView({behavior:'smooth',block:'center'});};
+  $('drPdf').onclick=async()=>{drSave(true);const p=await makePdf({sheet:'dsheet',scaler:'drscaler',pwrap:'drwrap',orient:'p'});p.save(drFile('pdf'));toast('تم تحميل الملف ✓');};
+  $('drPng').onclick=async()=>{drSave(true);try{const f=await drPng();
+    if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f]});}catch(e){if(e.name==='NotAllowedError')toast('الصورة جاهزة — اضغط "صورة PNG" مرة أخرى');}}
+    else{const a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;a.click();toast('تم تحميل الصورة');}}catch(e){toast('صار خطأ، حاول مرة ثانية');}};
+  $('drSave').onclick=()=>drSave(false);
+  $('drPrint').onclick=()=>{drSave(true);$('pageSz').textContent='@page{size:A4 portrait;margin:6mm}';window.print();};
+  $('drZoom').onclick=()=>openZoom('dsheet');$('drwrap').addEventListener('click',()=>openZoom('dsheet'));
+  drFillLists();
+  const n=new Date();drSetDate(`${n.getUTCFullYear()}-${pad(n.getUTCMonth()+1)}-${pad(n.getUTCDate())}`,true);drRenderSaved();
+  addEventListener('resize',drFit);new ResizeObserver(drFit).observe($('drwrap'));
+}
+
 /* ================= init ================= */
 buildSheet();
 $('crestLogo').src=LOGO;
@@ -2749,7 +3016,7 @@ function shift(n){const [y,m,d]=$('date').value.split('-').map(Number);const t=n
   $('date').value=`${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`;onDate();}
 $('dPrev').onclick=()=>shift(-1);$('dNext').onclick=()=>shift(1);
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('date').value=utcISO(+c.dataset.off);onDate();});
-initCrewDB();initCrew();initCharter();onDate();fit();initRelease();initLease();initHome();initPK();initSettings();initLock();show(location.hash.slice(1)||'home');$('toRL').onclick=handoff;updateToRL();
+initCrewDB();initCrew();initCharter();onDate();fit();initRelease();initLease();initHome();initPK();initSettings();initDR();initLock();show(location.hash.slice(1)||'home');$('toRL').onclick=handoff;updateToRL();
 addEventListener('resize',fit);
 document.fonts&&document.fonts.ready.then(fit);
 new ResizeObserver(fit).observe($('pwrap'));
