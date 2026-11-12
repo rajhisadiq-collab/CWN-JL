@@ -1069,6 +1069,15 @@ body[data-lock="1"] .dr-bg{display:none!important}
 
 .dsheet .dttl{display:flex;align-items:center;justify-content:center;gap:10px}
 .dsheet .dcalic{flex:none}
+/* daily rotation v3: bigger logo, seamless columns (one painted background, no white seams) */
+.dsheet .dlogo{height:165px!important}
+.dsheet .dttl{margin-top:16px!important}
+.dtab{border-spacing:0!important;
+  background:linear-gradient(#a5a5a5,#a5a5a5) 0 0/100% 58px no-repeat,
+  linear-gradient(to right,#8eaadb 0 70px,#b4c6e7 70px 140px,#d9e1f2 140px 240px,#7030a0 240px 335px,#ededed 335px 100%)!important}
+.dtab th,.dtab td,.dtab td.c1,.dtab td.c2,.dtab td.c3,.dtab td.c4,.dtab td.c5,.dtab td.c6,.dtab td.c7{background:transparent!important;border:0!important;box-shadow:none!important}
+.dtab th{height:58px!important;box-sizing:border-box}
+
 @media print{
   .dr-bg,.dr-hero,.pk-bg,.pk-hero,.busintro,.pkc,.lock,.to-rl,.handoff,#home,.rl-bg,.warp,.homebtn,.rl-hero{display:none!important}
   body[data-view="rl"] #viewJL{display:none!important}
@@ -1254,7 +1263,7 @@ body[data-lock="1"] .dr-bg{display:none!important}
 
     </div>
     <button class="h-set" id="hSet" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>إعدادات الطاقم</button>
-    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-D</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
+    <div class="h-foot"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#5fe0b0;box-shadow:0 0 10px #5fe0b0;animation:blink 1.4s infinite"></span><span id="hclock" style="font-family:'JetBrains Mono',monospace;direction:ltr">--:--Z</span><span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7;direction:ltr">v12.11-E</span><span style="opacity:.4">·</span><button class="lockbtn" data-lockbtn><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>قفل</button></div>
   </div>
 </div>
 
